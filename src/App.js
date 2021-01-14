@@ -4,69 +4,65 @@ import React from "react"
 class App extends React.Component {
   state = {
     countries: [],
-    region: "Africa",
-    nbCountries: 8,
+    region: "Asia", // Africa Americas Asia Europe Oceania
+    difficulty: 10, // has to be > to the nb of questions !
+    nbQuestions: 5,
+    questions: [],
+    turn: 0,
+    score: 0,
   }
 
   componentDidMount() {
+    this.prepareQuestions()
+  }
+
+  async prepareQuestions() {
     const base = "https://restcountries.eu/rest/v2/"
     const region = this.state.region === "" ? "all/" : "region/" + this.state.region
     const fields = "?fields=name;capital;flag;population"
-    // fetch("https://restcountries.eu/rest/v2/region/Europe?fields=name;capital;flag;population")
-    // fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;flag;population")
-    fetch(base + region + fields)
-      .then(resp => resp.json())
-      .then(data => {
-        // console.log(data)
-        this.setState({ countries: data })
-      })
+    let countries = await fetch(base + region + fields)
+    countries = await countries.json()
+    countries = await countries
+      .sort((a, b) => (a.population < b.population ? 1 : -1))
+      .splice(0, this.state.difficulty)
+    this.setState({ countries: countries })
+    console.log(this.state.countries)
+    const questions = this.shuffle(countries).splice(0, this.state.nbQuestions)
+    this.setState({ questions: questions })
   }
 
   // Fisher–Yates shuffle
-  shuffle(array) {
+  shuffle(originalArray) {
+    let array = [...originalArray]
     var currentIndex = array.length,
       temporaryValue,
       randomIndex
-
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex)
       currentIndex -= 1
-
-      // And swap it with the current element.
       temporaryValue = array[currentIndex]
       array[currentIndex] = array[randomIndex]
       array[randomIndex] = temporaryValue
     }
-
     return array
   }
 
-  ShuffledList = list => {
-    return this.shuffle(list).map(country => (
-      <li key={country.name}>
-        <img src={country.flag} alt="flag" />
-        <b>{country.name}</b> {country.capital}{" "}
-        <em>({Math.round(country.population / 1000000)} M)</em>
-      </li>
-    ))
-  }
-
   render() {
-    const countryList = this.state.countries
-      // .filter(country => country.population > 9000000)
-      .sort((a, b) => (a.population < b.population ? 1 : -1))
-      .splice(0, this.state.nbCountries)
     return (
       <div className="App">
         <h1>{this.state.region === "" ? "World" : this.state.region}</h1>
-        <ol>{this.ShuffledList(countryList)}</ol>
+        <ol>
+          {this.state.questions.map(country => (
+            <li key={country.name}>
+              <img src={country.flag} alt="flag" />
+              <b>{country.name}</b> {country.capital}{" "}
+              <em>({Math.round(country.population / 1000000)} M)</em>
+            </li>
+          ))}
+        </ol>
       </div>
     )
   }
 }
 
 export default App
-
-// Africa Americas Asia Europe Oceania
