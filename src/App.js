@@ -1,13 +1,17 @@
 import "./App.scss"
+import { ReactComponent as Logo } from "./undraw_adventure_4hum 1.svg"
 import React from "react"
+import Question from "./Question"
+import StartPage from "./StartPage"
 
 class App extends React.Component {
   state = {
     countries: [],
-    region: "Asia", // Africa Americas Asia Europe Oceania
-    difficulty: 10, // has to be > to the nb of questions !
-    nbQuestions: 5,
+    region: "", // Africa Americas Asia Europe Oceania
+    difficulty: 5, // has to be > to the nb of questions !
+    nbQuestions: 3,
     questions: [],
+    quizType: "",
     turn: 0,
     score: 0,
   }
@@ -26,9 +30,14 @@ class App extends React.Component {
       .sort((a, b) => (a.population < b.population ? 1 : -1))
       .splice(0, this.state.difficulty)
     this.setState({ countries: countries })
-    console.log(this.state.countries)
     const questions = this.shuffle(countries).splice(0, this.state.nbQuestions)
     this.setState({ questions: questions })
+  }
+
+  onStartSubmit = (e, type) => {
+    e.preventDefault()
+    console.log(type)
+    this.setState({ quizType: type, turn: 1 })
   }
 
   // Fisher–Yates shuffle
@@ -50,16 +59,25 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>{this.state.region === "" ? "World" : this.state.region}</h1>
-        <ol>
-          {this.state.questions.map(country => (
-            <li key={country.name}>
-              <img src={country.flag} alt="flag" />
-              <b>{country.name}</b> {country.capital}{" "}
-              <em>({Math.round(country.population / 1000000)} M)</em>
-            </li>
-          ))}
-        </ol>
+        <div className="quiz-header">
+          <h1>Country quiz</h1>
+          <Logo />
+        </div>
+        <div className="quiz-body">
+          {this.state.turn === 0 ? (
+            <StartPage onStartSubmit={this.onStartSubmit} />
+          ) : this.state.turn === this.state.nbQuestions ? (
+            <h2>Gagné / perdu</h2>
+          ) : (
+            <Question
+              countries={this.state.countries}
+              questions={this.state.questions}
+              quizType={this.state.quizType}
+              turn={this.state.turn}
+              shuffle={this.shuffle}
+            />
+          )}
+        </div>
       </div>
     )
   }

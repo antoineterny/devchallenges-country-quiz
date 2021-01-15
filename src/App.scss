@@ -1,17 +1,41 @@
 .App {
-  ul {
-    list-style-type: none;
+  width: 464px;
+  margin: 188px auto;
+
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -32px;
+    h1 {
+      font-weight: bold;
+      font-size: 36px;
+      line-height: 54px;
+      text-transform: uppercase;
+      color: #f2f2f2;
+    }
   }
-  li {
-    margin-bottom: 2em;
-    height: 54px;
-  }
-  img {
-    width: 84px;
-    object-fit: scale-down;
-    vertical-align: middle;
-    margin-right: 1em;
-    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
-    border-radius: 4px;
+
+  .quiz-body {
+    height: 515px;
+    border-radius: 24px;
+
+    padding: 32px;
+    padding-top: 68px;
+    background: white;
+    ul {
+      list-style-type: none;
+    }
+    li {
+      margin-bottom: 1em;
+      height: 54px;
+    }
+    img {
+      width: 84px;
+      object-fit: scale-down;
+      vertical-align: middle;
+      margin-right: 1em;
+      filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
+      border-radius: 4px;
+    }
   }
 }
