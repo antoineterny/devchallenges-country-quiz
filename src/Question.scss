@@ -1,8 +1,63 @@
 .Question {
-  h2 {
-    font-weight: bold;
-    font-size: 24px;
-    color: var(--darkblue);
-    margin-bottom: 32px;
-  }
+	overflow: auto;
+	padding: 32px;
+	padding-top: 42px;
+	h2 {
+		font-weight: bold;
+		font-size: 24px;
+		color: var(--darkblue);
+		margin-bottom: 32px;
+		margin-top: 28px;
+	}
+	ol {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		display: flex;
+		align-items: center;
+		margin: 0 0 25px 0;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 27px;
+		color: var(--purple);
+		padding: 13px 20px;
+		border: 2px solid var(--purple);
+		border-radius: 12px;
+	}
+	li:hover {
+		background-color: var(--yellow);
+		border: 2px solid var(--yellow);
+		cursor: pointer;
+		color: white;
+	}
+	.letter {
+		margin-right: 46px;
+		font-size: 24px;
+	}
+
+	img {
+		width: 84px;
+		margin-top: 34px;
+		object-fit: scale-down;
+		vertical-align: middle;
+		margin-right: 1em;
+		filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.3));
+		border-radius: 4px;
+	}
+
+	button {
+		float: right;
+		width: 116px;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 27px;
+		color: white;
+		padding: 13px 20px;
+		background-color: var(--yellow);
+		border: 2px solid var(--yellow);
+		border-radius: 12px;
+		cursor: pointer;
+	}
 }

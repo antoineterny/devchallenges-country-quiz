@@ -16,26 +16,11 @@
   }
 
   .quiz-body {
-    height: 515px;
+    // height: 515px;
     border-radius: 24px;
 
-    padding: 32px;
-    padding-top: 68px;
+    padding: 0;
     background: white;
-    ul {
-      list-style-type: none;
-    }
-    li {
-      margin-bottom: 1em;
-      height: 54px;
-    }
-    img {
-      width: 84px;
-      object-fit: scale-down;
-      vertical-align: middle;
-      margin-right: 1em;
-      filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
-      border-radius: 4px;
-    }
+
   }
 }
