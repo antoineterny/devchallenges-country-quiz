@@ -7,9 +7,9 @@ import StartPage from "./StartPage"
 class App extends React.Component {
   state = {
     countries: [],
-    region: "", // Africa Americas Asia Europe Oceania
-    difficulty: 5, // has to be > to the nb of questions !
-    nbQuestions: 3,
+    region: "Europe", // Africa Americas Asia Europe Oceania
+    difficulty: 100, // has to be > to the nb of questions !
+    nbQuestions: 10,
     questions: [],
     quizType: "",
     turn: 0,
@@ -30,7 +30,8 @@ class App extends React.Component {
       .sort((a, b) => (a.population < b.population ? 1 : -1))
       .splice(0, this.state.difficulty)
     this.setState({ countries: countries })
-    const questions = this.shuffle(countries).splice(0, this.state.nbQuestions)
+    const questions = [...countries]
+    this.shuffle(questions).splice(this.state.nbQuestions, questions.length - 1)
     this.setState({ questions: questions })
   }
 
@@ -40,9 +41,12 @@ class App extends React.Component {
     this.setState({ quizType: type, turn: 1 })
   }
 
+  nextQuestion = () => {
+    this.setState({ turn: this.state.turn + 1 })
+  }
+
   // Fisher–Yates shuffle
-  shuffle(originalArray) {
-    let array = [...originalArray]
+  shuffle(array) {
     var currentIndex = array.length,
       temporaryValue,
       randomIndex
@@ -66,7 +70,7 @@ class App extends React.Component {
         <div className="quiz-body">
           {this.state.turn === 0 ? (
             <StartPage onStartSubmit={this.onStartSubmit} />
-          ) : this.state.turn === this.state.nbQuestions ? (
+          ) : this.state.turn === this.state.nbQuestions + 1 ? (
             <h2>Gagné / perdu</h2>
           ) : (
             <Question
@@ -74,7 +78,9 @@ class App extends React.Component {
               questions={this.state.questions}
               quizType={this.state.quizType}
               turn={this.state.turn}
+              nbQuestions={this.state.nbQuestions}
               shuffle={this.shuffle}
+              nextQuestion={this.nextQuestion}
             />
           )}
         </div>
