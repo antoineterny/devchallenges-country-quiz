@@ -1,0 +1,44 @@
+.Results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 32px;
+  h2 {
+    margin: 0;
+    margin-top: 250px;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
+    color: #1d355d;
+  }
+  p {
+    font-size: 18px;
+    line-height: 27px;
+    color: #1d355d;
+    margin: 0;
+    margin-bottom: 70px;
+  }
+  .score {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 2em;
+  }
+  button {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    color: #1d355d;
+    padding: 18px 60px;
+    border: 2px solid #1d355d;
+    border-radius: 12px;
+    background-color: white;
+    &:hover {
+      cursor: pointer;
+      background-color: var(--yellow);
+      border-color: var(--yellow);
+      
+      color: white;
+    }
+  }
+}

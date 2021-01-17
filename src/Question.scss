@@ -1,7 +1,13 @@
 .Question {
+  position: relative;
   overflow: auto;
   padding: 32px;
   padding-top: 42px;
+  // svg {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  // }
   h2 {
     font-weight: bold;
     font-size: 24px;
@@ -22,13 +28,13 @@
     font-size: 18px;
     line-height: 27px;
     color: var(--purple);
-    padding: 13px 20px;
+    padding: 13px 50px 13px 20px;
     border: 2px solid var(--purple);
     border-radius: 12px;
     user-select: none;
     position: relative;
   }
-  li.correct {
+  li.correct, li.correct:hover {
     background: var(--green);
     border: 2px solid var(--green);
     color: white;
@@ -41,7 +47,7 @@
     height: 20px;
     right: 20px;
   }
-  li.incorrect {
+  li.incorrect, li.incorrect:hover {
     background: var(--red);
     border: 2px solid var(--red);
     color: white;

@@ -63,12 +63,16 @@ class Question extends React.Component {
           {this.state.displayed.map(answer => (
             <li
               key={answer.letter}
-              onClick={e => {
-                this.setState({ answerSubmitted: answer })
-                answer.name === this.state.correctAnswer.name
-                  ? this.props.incrementScore()
-                  : console.log("incorrect")
-              }}
+              onClick={
+                this.state.answerSubmitted
+                  ? null
+                  : e => {
+                      this.setState({ answerSubmitted: answer })
+                      answer.name === this.state.correctAnswer.name
+                        ? this.props.incrementScore()
+                        : console.log("incorrect")
+                    }
+              }
               className={
                 !this.state.answerSubmitted
                   ? null

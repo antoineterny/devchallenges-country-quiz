@@ -1,20 +1,23 @@
 import "./App.scss"
-import { ReactComponent as Logo } from "./undraw_adventure_4hum 1.svg"
+import { ReactComponent as LogoTravel } from "./undraw_adventure_4hum 1.svg"
+import { ReactComponent as LogoResults } from "./undraw_winners_ao2o 2.svg"
 import React from "react"
 import Question from "./Question"
 import StartPage from "./StartPage"
+import Results from "./Results"
 
 class App extends React.Component {
   state = {
     countries: [],
     region: "", // Africa Americas Asia Europe Oceania
     difficulty: 50, // most populous in list
-    nbQuestions: 10,
+    nbQuestions: 20,
     questions: [],
-    quizType: "",
+    quizType: "capital",
     turn: 0,
     score: 0,
   }
+  initialState = this.state
 
   componentDidMount() {
     this.prepareQuestions()
@@ -44,7 +47,12 @@ class App extends React.Component {
   nextQuestion = () => {
     this.setState({ turn: this.state.turn + 1 })
   }
-  incrementScore= () => this.setState({score: this.state.score +1})
+  incrementScore = () => this.setState({ score: this.state.score + 1 })
+
+  initializeState = () => {
+    this.setState(this.initialState)
+    this.prepareQuestions()
+  }
 
   // Fisher–Yates shuffle
   shuffle(array) {
@@ -66,13 +74,17 @@ class App extends React.Component {
       <div className="App">
         <div className="quiz-header">
           <h1>Country quiz</h1>
-          <Logo />
+          {this.state.turn < this.state.nbQuestions + 1 ? (
+            <LogoTravel className="svg-travel" />
+          ) : (
+            <LogoResults className="svg-results" />
+          )}
         </div>
         <div className="quiz-body">
           {this.state.turn === 0 ? (
             <StartPage onStartSubmit={this.onStartSubmit} />
           ) : this.state.turn === this.state.nbQuestions + 1 ? (
-            <h2>Gagné / perdu</h2>
+            <Results score={this.state.score} initializeState={this.initializeState} />
           ) : (
             <Question
               countries={this.state.countries}
