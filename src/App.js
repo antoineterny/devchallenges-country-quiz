@@ -7,8 +7,8 @@ import StartPage from "./StartPage"
 class App extends React.Component {
   state = {
     countries: [],
-    region: "Europe", // Africa Americas Asia Europe Oceania
-    difficulty: 100, // has to be > to the nb of questions !
+    region: "", // Africa Americas Asia Europe Oceania
+    difficulty: 50, // most populous in list
     nbQuestions: 10,
     questions: [],
     quizType: "",
@@ -44,6 +44,7 @@ class App extends React.Component {
   nextQuestion = () => {
     this.setState({ turn: this.state.turn + 1 })
   }
+  incrementScore= () => this.setState({score: this.state.score +1})
 
   // Fisher–Yates shuffle
   shuffle(array) {
@@ -81,6 +82,7 @@ class App extends React.Component {
               nbQuestions={this.state.nbQuestions}
               shuffle={this.shuffle}
               nextQuestion={this.nextQuestion}
+              incrementScore={this.incrementScore}
             />
           )}
         </div>
