@@ -43,8 +43,8 @@ class App extends React.Component {
 			questions: [],
 			quizType: type,
 			region: region,
-			nbQuestions: nbQuestions,
-			difficulty: difficulty,
+			nbQuestions: parseInt(nbQuestions),
+			difficulty: parseInt(difficulty),
 			turn: 1,
 			score: 0
 		})
@@ -96,7 +96,9 @@ class App extends React.Component {
 							initializeState={this.initializeState}
 						/>
 					) : this.state.questions.length < this.state.nbQuestions ? (
-						<p>charging...</p>
+						<div className="charging">
+              <p>charging...</p>
+            </div>
 					) : (
 						<Question
 							countries={this.state.countries}

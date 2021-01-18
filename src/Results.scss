@@ -10,12 +10,12 @@
     font-weight: bold;
     font-size: 48px;
     line-height: 72px;
-    color: #1d355d;
+    color: var(--verydarkblue);
   }
   p {
     font-size: 18px;
     line-height: 27px;
-    color: #1d355d;
+    color: var(--verydarkblue);
     margin: 0;
     margin-bottom: 70px;
   }
@@ -28,16 +28,15 @@
     font-weight: 600;
     font-size: 18px;
     line-height: 27px;
-    color: #1d355d;
+    color: var(--verydarkblue);
     padding: 18px 60px;
-    border: 2px solid #1d355d;
+    border: 2px solid var(--verydarkblue);
     border-radius: 12px;
     background-color: white;
     &:hover {
       cursor: pointer;
-      background-color: var(--yellow);
-      border-color: var(--yellow);
-      
+      background-color: var(--green);
+      border-color: var(--green);
       color: white;
     }
   }

@@ -16,8 +16,6 @@ class Question extends React.Component {
   shuffleCountries(turn) {
     const { countries, questions } = this.props
     const answerIndex = countries.findIndex(q => q.name === questions[turn].name)
-    console.log("answerIndex", answerIndex)
-    console.log("answer", questions[turn].name)
     let possibles = [...countries]
     possibles.splice(answerIndex, 1)
     this.props.shuffle(possibles)

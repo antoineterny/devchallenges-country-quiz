@@ -21,7 +21,7 @@ class StartPage extends React.Component {
 				className="StartPage-form"
 				onSubmit={e => this.props.onStartSubmit(e, this.state)}
 			>
-				<h2>Quiz type</h2>
+				<h3>Quiz type</h3>
 				<div className="fieldset">
 					<input
 						type="radio"
@@ -42,7 +42,7 @@ class StartPage extends React.Component {
 					<label htmlFor="flag">Flag quiz</label>
 				</div>
 
-				<h2>Region</h2>
+				<h3>Region</h3>
 				<div className="fieldset">
 					<input
 						type="radio"
@@ -100,7 +100,7 @@ class StartPage extends React.Component {
 					<label htmlFor="Oceania">Oceania</label>
 				</div>
 
-        <h2>Number of questions</h2>
+        <h3>Number of questions</h3>
 				<div className="fieldset">
 					<input
 						type="radio"
@@ -131,7 +131,7 @@ class StartPage extends React.Component {
 					<label htmlFor="20">20</label>
 				</div>
 
-        <h2>Difficulty</h2>
+        <h3>Difficulty</h3>
 				<div className="fieldset">
 					<input
 						type="radio"

@@ -1,4 +1,58 @@
 .StartPage-form {
   padding: 32px;
-  padding-top: 64px;
+  padding-top: 32px;
+  h3 {
+    color: var(--darkblue);
+  }
+  .fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    width: 100%;
+    gap: 1em;
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: var(--purple);
+      padding: 13px 20px;
+      border: 2px solid var(--purple);
+      border-radius: 12px;
+      user-select: none;
+      cursor: pointer;
+      flex-grow: 1;
+    }
+    input[type="radio"] {
+      display: none;
+    }
+    input:checked + label {
+      background: var(--yellow);
+      border: 2px solid var(--yellow);
+      color: white;
+    }
+  }
+  input[type="submit"] {
+    margin-top: 32px;
+    padding: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 22px;
+    line-height: 27px;
+    background-color: white;
+    border: 2px solid var(--green);
+    color: var(--green);
+    border-radius: 12px;
+    width: 100%;
+    text-transform: uppercase;
+    &:hover {
+      cursor: pointer;
+      background-color: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+  }
 }
