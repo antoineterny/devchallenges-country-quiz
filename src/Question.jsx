@@ -1,4 +1,5 @@
 import "./Question.scss"
+// import translation_fr from "./translation_fr"
 import React from "react"
 
 class Question extends React.Component {
@@ -33,7 +34,12 @@ class Question extends React.Component {
     const { questions, quizType } = this.props
     const title =
       quizType === "capital" ? (
-        <h2>{questions[this.state.turn - 1].capital} is the capital of</h2>
+        <h2>
+          {
+          // translation_fr[questions[this.state.turn - 1].capital] ||
+            questions[this.state.turn - 1].capital}{" "}
+          is the capital of
+        </h2>
       ) : (
         <div>
           <img src={questions[this.state.turn - 1].flag} alt="mystery flag" />

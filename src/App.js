@@ -46,7 +46,8 @@ class App extends React.Component {
 			nbQuestions: parseInt(nbQuestions),
 			difficulty: parseInt(difficulty),
 			turn: 1,
-			score: 0
+      score: 0,
+      lang: "fr"
 		})
 		setTimeout(() => this.prepareQuestions(), 100)
 	}
